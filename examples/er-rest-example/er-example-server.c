@@ -51,6 +51,7 @@
 #define CHANNEL 11
 
 #define PLATFORM_HAS_LIGHT 0
+#define PLATFORM_HAS_AGGREGATION 1
 
 #define DEBUG 0
 #if DEBUG

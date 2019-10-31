@@ -229,9 +229,9 @@ packet_input(void)
 	printf("PRE_AG\n");
 
 	#if PLATFORM_HAS_AGGREGATION
-	  printf("PLATFORM_HAS_AGGREGATION\n");	
+	  printf("PLATFORM_HAS_AGGREGATION\n");	 
 	  doAggregation();
-        #endif
+  #endif
 
 	printf("POS_AG\n");
 #if UIP_CONF_TCP_SPLIT
@@ -879,9 +879,10 @@ void doAggregation(void){
 
   #if PLATFORM_HAS_AGGREGATION   /* This is a definition put in Contiki/platform/wismote/platform-conf.c. Sky motes do not have enough memory to implement Aggregation. */
     printf("HELLO  AGGREGATION \n");
-	static coap_packet_t coap_pt[1];
+	  erbium_status_code = NO_ERROR;
+    static coap_packet_t coap_pt[1];
     char p1[2];
-    unsigned int begin_payload_index=UIP_LLH_LEN + UIP_IPUDPH_LEN+8;// this value was found by me (brute force!).
+    unsigned int begin_payload_index=UIP_LLH_LEN + UIP_IPUDPH_LEN + 8;// this value was found by me (brute force!).
     unsigned int coap_code=0, i;
     int p_size=0;
     PRINTF("Parsing: UIP_IP_BUF->proto is %u \n", UIP_IP_BUF->proto);
@@ -894,22 +895,40 @@ void doAggregation(void){
           PRINTF("\n\n\nParsing: SELF-PKT \n\n\n");
         }
         else{
-          PRINTF("Parsing: NBR-PKT\n");
-          coap_parse_message(coap_pt, &uip_buf[begin_payload_index], uip_datalen());
-          p_size=uip_datalen()-begin_payload_index-8;
-	  if(p_size % 2 != 0){
-		p_size = p_size-1 ;
-	  }
-          printf("New TCPIP rcv payload of the rcv Payload is %d \n",p_size);
-          for(i=0;i<p_size;i=i+2){
-            p1[0] = coap_pt->payload[i]; // Get the payload value
-            p1[1] = coap_pt->payload[i+1]; // Get the payload value
-            add_payload(p1);
-          }
+
+    //       PRINTF("Parsing: NBR-PKT\n");
+              //if(uip_newdata()){
+               // printf("ERROR CODE AGGREGATION: %u\n");
+                //erbium_status_code =  coap_parse_message(coap_pt, &uip_buf[begin_payload_index], uip_datalen())
+              
+              //printf("CON NON: %u\n", uip_buf[56]);
+                // printf("PRINTING UIP_BUF: ");
+                // int i = begin_payload_index;
+                // for(i = 56;i < 58; i++){
+                //   printf("%u ", uip_buf[i]);
+                // }
+                // printf("\n");
+              //}
+    //       p_size=uip_datalen()-begin_payload_index-8;
+	  // if(p_size % 2 != 0){
+		// p_size = p_size-1 ;
+	  // }
+    //       printf("New TCPIP rcv payload of the rcv Payload is %d \n",p_size);
+    //       for(i=0;i<p_size;i=i+2){
+    //         p1[0] = coap_pt->payload[i]; // Get the payload value
+    //         p1[1] = coap_pt->payload[i+1]; // Get the payload value
+    //         add_payload(p1);
+    //       }
           // Drop all not self-produced packets.
-          uip_len = 0;
-          uip_ext_len = 0;
-          uip_flags = 0;
+          if(uip_buf[56] != 72){
+            printf("Aggregating Packet\n");
+            uip_len = 0;
+            uip_ext_len = 0;
+            uip_flags = 0;
+          }else{
+            printf("NOT Dropping\n");
+          }
+
           return;
         }
       }

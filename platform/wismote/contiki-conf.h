@@ -5,6 +5,10 @@
 
 #include "platform-conf.h"
 
+#ifndef PLATFORM_HAS_AGGREGATION
+#define PLATFORM_HAS_AGGREGATION 1
+#endif
+
 #ifndef NETSTACK_CONF_MAC
 #define NETSTACK_CONF_MAC     csma_driver
 #endif /* NETSTACK_CONF_MAC */

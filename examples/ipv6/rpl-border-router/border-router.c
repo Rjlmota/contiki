@@ -54,6 +54,9 @@
 #include <string.h>
 #include <ctype.h>
 
+
+#define PLATFORM_HAS_AGGREGATION 0
+
 #define DEBUG DEBUG_NONE
 #include "net/ip/uip-debug.h"
 

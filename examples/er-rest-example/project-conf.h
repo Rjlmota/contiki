@@ -39,6 +39,12 @@
 #ifndef __PROJECT_ERBIUM_CONF_H__
 #define __PROJECT_ERBIUM_CONF_H__
 
+
+#ifndef PLATFORM_HAS_AGGREGATION
+#define PLATFORM_HAS_AGGREGATION 1
+#endif
+
+
 /* Custom channel and PAN ID configuration for your project. */
 /*
    #undef RF_CHANNEL
@@ -53,6 +59,7 @@
    #undef UIP_CONF_BUFFER_SIZE
    #define UIP_CONF_BUFFER_SIZE           256
  */
+
 
 /* Disabling RDC and CSMA for demo purposes. Core updates often
    require more memory. */
