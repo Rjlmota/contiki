@@ -226,14 +226,14 @@ packet_input(void)
     check_for_tcp_syn();
     uip_input();
     if(uip_len > 0) {
-	printf("PRE_AG\n");
+	//printf("PRE_AG\n");
 
 	#if PLATFORM_HAS_AGGREGATION
-	  printf("PLATFORM_HAS_AGGREGATION\n");	 
+	  //printf("PLATFORM_HAS_AGGREGATION\n");	 
 	  doAggregation();
   #endif
 
-	printf("POS_AG\n");
+	//printf("POS_AG\n");
 #if UIP_CONF_TCP_SPLIT
       uip_split_output();
 #else /* UIP_CONF_TCP_SPLIT */
@@ -878,7 +878,7 @@ PROCESS_THREAD(tcpip_process, ev, data)
 void doAggregation(void){
 
   #if PLATFORM_HAS_AGGREGATION   /* This is a definition put in Contiki/platform/wismote/platform-conf.c. Sky motes do not have enough memory to implement Aggregation. */
-    printf("HELLO  AGGREGATION \n");
+    //printf("HELLO  AGGREGATION \n");
 	  erbium_status_code = NO_ERROR;
     static coap_packet_t coap_pt[1];
     char p1[2];

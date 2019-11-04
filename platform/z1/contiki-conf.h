@@ -185,7 +185,7 @@
 
 /* Handle 10 routes    */
 #ifndef UIP_CONF_MAX_ROUTES
-#define UIP_CONF_MAX_ROUTES             15
+#define UIP_CONF_MAX_ROUTES             20
 #endif
 
 #define UIP_CONF_ND6_SEND_RA            0

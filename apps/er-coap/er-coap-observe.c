@@ -73,7 +73,7 @@ return a - (double)( result ) * b;
 
 
 int getInstructions(char *payload){
-  /*
+  
   printf("PAYLOAD -> %s\n", payload);
   printf("Extracting Instructions\n");
   if(payload != NULL){
@@ -105,7 +105,7 @@ int getInstructions(char *payload){
     printf("NULL pointer\n");
    return 0;
   }
-  */
+  
  return 0;  
 }
 

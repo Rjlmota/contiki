@@ -49,6 +49,7 @@
 #endif
 
 #define PLATFORM_HAS_LIGHT 0
+#define PLATFORM_HAS_AGGREGATION 1
 
 #define CHANNEl 11
 
