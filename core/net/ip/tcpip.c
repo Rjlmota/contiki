@@ -230,7 +230,7 @@ packet_input(void)
 
 	#if PLATFORM_HAS_AGGREGATION
 	  //printf("PLATFORM_HAS_AGGREGATION\n");	 
-	  doAggregation();
+	  //doAggregation();
   #endif
 
 	//printf("POS_AG\n");
